@@ -13,6 +13,25 @@ Send system notifications on several platforms with a simple and unified API. Cu
 
   gem install notifier
 
+=== Mac OS X
+
+* Install Growl - http://growl.info/
+* Install the growlnotify script located on the "Extras" directory
+* Open the Growl Preference Panel (System > Growl) and activate "Listen for incoming notifications" and "Allow remote application registration" options on the Network tab.
+
+=== Linux
+
+If you're a linux guy, you can choose one of these methods:
+
+* Install libnotify-bin and its dependencies: <tt>sudo aptitude install libnotify-bin</tt>
+* Install xosd-bin: <tt>sudo aptitude install xosd-bin</tt>
+* KDE users don't need to install anything: Test Notifier will use +knotify+ or +kdialog+.
+
+=== Windows
+
+* Install Snarl: download from http://www.fullphat.net
+* Install ruby-snarl: <tt>gem install ruby-snarl</tt>
+
 == Usage
 
 Notifier will try to detect which notifiers are available in your system. So you can just send a message:
@@ -38,6 +57,20 @@ There are several helper methods that you can use in order to retrieve notifiers
 * <tt>Notifier.supported_notifiers</tt>: return only supported notifiers
 * <tt>Notifier.from_name(name)</tt>: find notifier by its name
 * <tt>Notifier.supported_notifier_from_name(name)</tt>: find a supported notifier by its name
+
+== Creating custom notifiers
+
+To create a new notifier, just create a module on <tt>Notifier</tt> namespace that implements the following interface:
+
+  module Notifier
+    module MyCustomNotifier
+      def self.supported?
+      end
+
+      def self.notify(options)
+      end
+    end
+  end
 
 == Maintainer
 

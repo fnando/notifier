@@ -2,7 +2,7 @@ module Notifier
   module Growl
     extend self
 
-    SCRIPT = File.dirname(__FILE__) + "/../../../resources/register-growl.scpt"
+    SCRIPT = File.dirname(__FILE__) + "/../../resources/register-growl.scpt"
     FILE = File.expand_path("~/.test_notifier-growl")
 
     def supported?
@@ -10,6 +10,8 @@ module Notifier
     end
 
     def notify(options)
+      register
+
       Thread.new do
         `growlnotify -n test_notifier --image #{options[:image]} -p 2 -m '#{options[:message]}' -t '#{options[:title]}'`
       end
