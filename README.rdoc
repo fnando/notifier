@@ -1,0 +1,67 @@
+= Notifier
+
+Send system notifications on several platforms with a simple and unified API. Currently supports:
+
+* Growl (Mac OS X)
+* Kdialog (Linux/KDE)
+* Knotify (Linux/KDE)
+* OSD Cat (Linux)
+* Libnotify (Linux)
+* Snarl (Windows)
+
+== Installation
+
+  gem install notifier
+
+== Usage
+
+Notifier will try to detect which notifiers are available in your system. So you can just send a message:
+
+  Notifier.notify(
+    :image   => "image.png",
+    :title   => "Testing Notifier",
+    :message => "Sending an important message!"
+  )
+
+Not all notifiers support the image option, therefore it will be ignored.
+
+If your system support more than one notifier, you can specify which one you prefer:
+
+  Notifier.default_notifier = :notify_send
+
+The available names are <tt>growl</tt>, <tt>kdialog</tt>, <tt>knotify</tt>, <tt>notify_send</tt>, <tt>osd_cat</tt>, and <tt>snarl</tt>.
+
+There are several helper methods that you can use in order to retrieve notifiers.
+
+* <tt>Notifier.notifier</tt>: return the first supported notifier
+* <tt>Notifier.notifiers</tt>: return all notifiers
+* <tt>Notifier.supported_notifiers</tt>: return only supported notifiers
+* <tt>Notifier.from_name(name)</tt>: find notifier by its name
+* <tt>Notifier.supported_notifier_from_name(name)</tt>: find a supported notifier by its name
+
+== Maintainer
+
+* Nando Vieira - http://nandovieira.com.br
+
+== License
+
+(The MIT License)
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
