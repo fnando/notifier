@@ -6,6 +6,7 @@ module Notifier
   autoload :Kdialog,    "notifier/kdialog"
   autoload :NotifySend, "notifier/notify_send"
   autoload :Placebo,    "notifier/placebo"
+  autoload :Version,    "notifier/version"
 
   extend self
 
@@ -23,7 +24,7 @@ module Notifier
 
   def notifiers
     constants.collect do |name|
-      const_get(name) unless name.to_s == "Placebo"
+      const_get(name) unless %w[Placebo Version].include?(name.to_s)
     end.compact + [Placebo]
   end
 

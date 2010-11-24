@@ -7,9 +7,13 @@ module Notifier
     end
 
     def notify(options)
-      Thread.new do
-        `kdialog --title #{options[:title]} --passivepopup \"#{options[:message]}\" 5`
-      end
+      command = %w[
+        kdialog
+        --title='#{options[:title]}'
+        --passivepopup='#{options[:message]}' 5
+      ].join(" ")
+
+      Thread.new { `#{command}` }
     end
   end
 end
