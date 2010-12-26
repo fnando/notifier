@@ -7,7 +7,7 @@ module Notifier
     end
 
     def notify(options)
-      command = %w[
+      command = %W[
         kdialog
         --title='#{options[:title]}'
         --passivepopup='#{options[:message]}' 5
