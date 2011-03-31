@@ -1,3 +1,8 @@
+= This is just a fork
+
+This is a fork of https://github.com/fnando/notifier, whose goal is to
+solve a bug in notify-send and multiword/multiline messages.
+
 = Notifier
 
 Send system notifications on several platforms with a simple and unified API. Currently supports:
