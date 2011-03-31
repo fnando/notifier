@@ -8,7 +8,7 @@ module Notifier
 
     def notify(options)
       Thread.new do
-        `notify-send -i #{options[:image]} #{options[:title]} \"#{options[:message]}\"`
+        `notify-send -i #{options[:image]} "#{options[:title]}" "#{options[:message]}"`
       end
     end
   end
