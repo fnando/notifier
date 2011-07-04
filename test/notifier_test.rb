@@ -17,7 +17,7 @@ class NotifierTest < Test::Unit::TestCase
     Notifier::Snarl.expects(:supported?).returns(true)
     Notifier::Knotify.expects(:supported?).returns(true)
 
-    assert_equal Notifier::Snarl, Notifier.notifier
+    assert [Notifier::Snarl, Notifier::Knotify].include? Notifier.notifier
   end
 
   test "prefer default notifier" do
