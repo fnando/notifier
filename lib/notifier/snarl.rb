@@ -6,6 +6,7 @@ module Notifier
       return false unless RUBY_PLATFORM =~ /(mswin|mingw)/
 
       begin
+        require 'rubygems' # windows 1.8.7 ruby by default doesn't load rubygems
         require "snarl" unless defined?(::Snarl)
         true
       rescue LoadError
@@ -14,7 +15,9 @@ module Notifier
     end
 
     def notify(options)
-      ::Snarl.show_message(options[:title], options[:message], options[:image])
+      ::Snarl.show_message(options.fetch(:title,"Notification"), 
+                           options.fetch(:message, "Message") , 
+                           options[:image])
     end
   end
 end
