@@ -8,7 +8,12 @@ module Notifier
 
     def notify(options)
       Thread.new do
-        `notify-send -i #{options[:image]} "#{options[:title]}" "#{options[:message]}"`
+          args = []
+          args += ["-i", options[:image]] if options[:image]
+          title = options[:title] || "Notification"
+          message = options[:message] || "Message"
+          args += [title, message]
+          system('notify-send', *args)
       end
     end
   end
