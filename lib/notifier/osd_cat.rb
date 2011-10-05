@@ -8,21 +8,25 @@ module Notifier
 
     def notify(options)
       color = options.fetch(:color, "white")
-      message = options[:message].inspect.gsub(/!/, "\\!")
-      command = %W[
-        echo #{message} |
-        osd_cat
-        --shadow=0
-        --colour=#{color}
-        --pos=top
-        --offset=10
-        --align=center
-        --font=-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*
-        --delay=5
-        --outline=4
-      ].join(" ")
 
-      Thread.new { `#{command}` }
+      command = [
+        "osd_cat",
+        "--shadow", "0",
+        "--colour", color,
+        "--pos", "top",
+        "--offset", "10",
+        "--align", "center",
+        "--font", "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*",
+        "--delay", "5",
+        "--outline", "4",
+      ]
+
+      Thread.new do
+        Open3.popen3("osd_cat", command) do |stdin, stdout, stderr|
+          stdin.puts Shellwords.shellescape(options[:message])
+          stdin.close
+        end
+      end
     end
   end
 end
