@@ -11,16 +11,16 @@ module Notifier
 
     def notify(options)
       register
-      command = %W[
-        growlnotify
-        --name=test_notifier
-        --image='#{options[:image]}'
-        --priority=2
-        --message='#{options[:message]}'
-        '#{options[:title]}'
-      ].join(" ")
+      command = [
+        "growlnotify",
+        "--name", "test_notifier",
+        "--image", options[:image],
+        "--priority", "2",
+        "--message", options[:message],
+        options[:title]
+      ]
 
-      Thread.new { `#{command}` }
+      Thread.new { system(*command) }
     end
 
     def register
