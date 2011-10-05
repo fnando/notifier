@@ -7,9 +7,13 @@ module Notifier
     end
 
     def notify(options)
-      Thread.new do
-        `dcop knotify default notify eventname \'#{options[:title]}\' \'#{options[:message]}\' '' '' 16 2`
-      end
+      command = [
+        "dcop", "knotify", "default", "notify", "eventname",
+        options[:title], options[:message],
+        "", "", "16", "2"
+      ]
+
+      Thread.new { system(*command) }
     end
   end
 end
