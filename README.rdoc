@@ -76,6 +76,11 @@ To create a new notifier, just create a module on <tt>Notifier</tt> namespace th
 
 * Nando Vieira - http://nandovieira.com.br
 
+== Contributors
+
+* Olek Janiszewski
+* David Miani
+
 == License
 
 (The MIT License)
