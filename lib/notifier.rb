@@ -1,5 +1,4 @@
 require "open3"
-require "shellwords"
 
 module Notifier
   autoload :Growl,      "notifier/growl"

@@ -16,14 +16,14 @@ module Notifier
         "--pos", "top",
         "--offset", "10",
         "--align", "center",
-        "--font", "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*",
+        "--font", "-bitstream-bitstream charter-bold-r-*-*-*-350-*-*-*-*-*-*",
         "--delay", "5",
         "--outline", "4",
       ]
 
       Thread.new do
-        Open3.popen3("osd_cat", command) do |stdin, stdout, stderr|
-          stdin.puts Shellwords.shellescape(options[:message])
+        Open3.popen3(*command) do |stdin, stdout, stderr|
+          stdin.puts options[:message]
           stdin.close
         end
       end
