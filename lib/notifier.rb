@@ -25,7 +25,7 @@ module Notifier
   end
 
   def notifiers
-    constants.collect do |name|
+    constants.sort.collect do |name|
       const_get(name) unless %w[Placebo Version].include?(name.to_s)
     end.compact + [Placebo]
   end
