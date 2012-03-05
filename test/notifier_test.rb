@@ -17,7 +17,7 @@ class NotifierTest < Test::Unit::TestCase
     Notifier::Snarl.expects(:supported?).returns(true)
     Notifier::Knotify.expects(:supported?).returns(true)
 
-    assert_equal Notifier::Snarl, Notifier.notifier
+    assert_equal Notifier::Knotify, Notifier.notifier
   end
 
   test "prefer default notifier" do
@@ -69,5 +69,22 @@ class NotifierTest < Test::Unit::TestCase
   test "return nil when an invalid notifier name is provided" do
     assert_nil Notifier.from_name(:invalid)
     assert_nil Notifier.supported_notifier_from_name(:invalid)
+  end
+
+  test "use gntp when available for growl notifications" do
+    Notifier::Growl.unstub(:supported?)
+    Notifier::Growl.expects(:supports_gntp?).returns(true)
+    Notifier::Growl::GNTPNotify.expects(:new)
+    Notifier.supported_notifier_from_name(:growl)
+    Notifier::Growl.stubs(:supported?).returns(false)
+  end
+
+  test "use growlnotify when gntp is not available for growl notifications" do
+    Notifier::Growl.unstub(:supported?)
+    Notifier::Growl.expects(:supports_gntp?).returns(false)
+    Notifier::Growl.expects(:supports_growlnotify?).returns(true)
+    Notifier::Growl::GrowlNotify.expects(:new)
+    Notifier.supported_notifier_from_name(:growl)
+    Notifier::Growl.stubs(:supported?).returns(false)
   end
 end
