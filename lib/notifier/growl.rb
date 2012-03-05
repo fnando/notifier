@@ -17,6 +17,7 @@ module Notifier
 
     def notify(options)
       return unless @@_notifier
+      @@_notfier.notify( options )
     end
 
     class GNTPNotify
