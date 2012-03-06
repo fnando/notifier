@@ -1,4 +1,5 @@
 require "open3"
+require "rbconfig"
 
 module Notifier
   autoload :Growl,      "notifier/growl"

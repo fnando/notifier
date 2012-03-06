@@ -3,7 +3,8 @@ module Notifier
     extend self
 
     def supported?
-      RUBY_PLATFORM =~ /(linux|freebsd)/ && `ps -Al | grep dcop` && $? == 0
+      (RUBY_PLATFORM =~ /(linux|freebsd)/ || Config::CONFIG['host_os'] =~ /(linux|freebsd)/) &&
+          `ps -Al | grep dcop` && $? == 0
     end
 
     def notify(options)
