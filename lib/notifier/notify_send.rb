@@ -3,7 +3,8 @@ module Notifier
     extend self
 
     def supported?
-      RUBY_PLATFORM =~ /(linux|freebsd)/ && `which notify-send > /dev/null` && $? == 0
+      (RUBY_PLATFORM =~ /(linux|freebsd)/ || RbConfig::CONFIG['host_os'] =~ /(linux|freebsd)/) &&
+          `which notify-send > /dev/null` && $? == 0
     end
 
     def notify(options)
