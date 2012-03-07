@@ -36,7 +36,7 @@ module Notifier
   end
 
   def from_name(name)
-    notifier = const_get(classify(name.to_s))
+    const_get(classify(name.to_s))
   rescue Exception
     nil
   end
