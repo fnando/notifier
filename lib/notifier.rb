@@ -1,4 +1,5 @@
 require "open3"
+require "rbconfig"
 
 module Notifier
   autoload :Growl,      "notifier/growl"
@@ -44,6 +45,10 @@ module Notifier
   def supported_notifier_from_name(name)
     notifier = from_name(name)
     notifier && notifier.supported? ? notifier : nil
+  end
+
+  def os?(regex)
+    RUBY_PLATFORM =~ regex || RbConfig::CONFIG["host_os"] =~ regex
   end
 
   private

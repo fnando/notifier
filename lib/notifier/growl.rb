@@ -6,7 +6,7 @@ module Notifier
     FILE = File.expand_path("~/.test_notifier-growl")
 
     def supported?
-      RUBY_PLATFORM =~ /darwin/ && `which growlnotify` && $? == 0
+      Notifier.os?(/darwin/) && `which growlnotify` && $? == 0
     end
 
     def notify(options)

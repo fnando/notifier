@@ -3,7 +3,7 @@ module Notifier
     extend self
 
     def supported?
-      return false unless RUBY_PLATFORM =~ /(mswin|mingw)/
+      return false unless Notifier.os?(/(mswin|mingw)/)
 
       begin
         require "snarl" unless defined?(::Snarl)

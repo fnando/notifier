@@ -13,9 +13,9 @@ module Notifier
 
     def notify(options)
       ::GNTP.notify(
-          :title => options[:title],
-          :text => options[:message],
-          :icon => options[:image]
+        :title => options[:title],
+        :text => options[:message],
+        :icon => options[:image]
       )
     end
   end
