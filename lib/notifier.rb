@@ -2,6 +2,7 @@ require "open3"
 
 module Notifier
   autoload :Growl,      "notifier/growl"
+  autoload :GNTP,       "notifier/gntp"
   autoload :Snarl,      "notifier/snarl"
   autoload :OsdCat,     "notifier/osd_cat"
   autoload :Knotify,    "notifier/knotify"
