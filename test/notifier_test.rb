@@ -43,7 +43,7 @@ class NotifierTest < Test::Unit::TestCase
   end
 
   test "retrieve list of all notifiers" do
-    assert_equal 7, Notifier.notifiers.size
+    assert_equal 8, Notifier.notifiers.size
   end
 
   test "consider Placebo as fallback notifier" do
