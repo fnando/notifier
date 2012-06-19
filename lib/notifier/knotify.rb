@@ -9,7 +9,7 @@ module Notifier
     def notify(options)
       command = [
         "dcop", "knotify", "default", "notify", "eventname",
-        options[:title], options[:message],
+        options[:title].to_s, options[:message].to_s,
         "", "", "16", "2"
       ]
 
