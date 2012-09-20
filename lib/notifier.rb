@@ -1,4 +1,7 @@
 require "open3"
+require "socket"
+require "digest/md5"
+require "timeout"
 require "rbconfig"
 
 module Notifier
@@ -11,6 +14,7 @@ module Notifier
   autoload :NotifySend, "notifier/notify_send"
   autoload :Placebo,    "notifier/placebo"
   autoload :Version,    "notifier/version"
+  autoload :Adapters,   "notifier/adapters"
 
   extend self
 
@@ -28,7 +32,7 @@ module Notifier
 
   def notifiers
     constants.collect do |name|
-      const_get(name) unless %w[Placebo Version].include?(name.to_s)
+      const_get(name) unless %w[Placebo Adapters Version].include?(name.to_s)
     end.compact + [Placebo]
   end
 
