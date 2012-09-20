@@ -14,7 +14,7 @@ module Notifier
       command = [
         "growlnotify",
         "--name", "test_notifier",
-        "--image", options[:image],
+        "--image", (options[:image] || ''),
         "--priority", "2",
         "--message", options[:message],
         options[:title]
