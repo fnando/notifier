@@ -9,8 +9,8 @@ module Notifier
     def notify(options)
       command = [
         "kdialog",
-        "--title", options[:title],
-        "--passivepopup", options[:message], "5"
+        "--title", options[:title].to_s,
+        "--passivepopup", options[:message].to_s, "5"
       ]
 
       Thread.new { system(*command) }

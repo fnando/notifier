@@ -11,14 +11,18 @@ module Notifier
 
     def notify(options)
       register
-      command = [
-        "growlnotify",
-        "--name", "test_notifier",
-        "--image", options[:image],
-        "--priority", "2",
-        "--message", options[:message],
-        options[:title]
-      ]
+      command = if options.is_a?(String)
+        "growlnotify -m '#{options}'"
+      else
+        [
+          "growlnotify",
+          "--name", "test_notifier",
+          "--image", options[:image].to_s,
+          "--priority", "2",
+          "--message", options[:message].to_s,
+          options[:title].to_s
+        ]
+      end
 
       Thread.new { system(*command) }
     end
