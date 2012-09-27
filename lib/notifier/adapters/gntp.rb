@@ -22,6 +22,10 @@ module Notifier
       end
 
       def write(*contents)
+        contents.map! do |content|
+          content.force_encoding("utf-8") rescue content
+        end
+
         socket = TCPSocket.open(host, port)
         message = [*contents, line_break(2)].join(line_break)
         socket.write(message)
