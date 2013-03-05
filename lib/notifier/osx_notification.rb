@@ -23,9 +23,11 @@ module Notifier
 
     def notify(options)
       TerminalNotifier.notify(options[:message],
-        :title    => 'Test Notifier',
+        :title    => options[:title],
+        :subtitle => 'Test Notifier',
         :activate => 'com.apple.Terminal',
-        :group    => Process.pid)
+        :group    => Process.pid
+      )
     end
   end
 end
