@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
 
   s.requirements << "Growl, Libnotify, OSD, KDE (Knotify and Kdialog) or Snarl"
 
+  s.add_dependency "terminal-notifier"
+
   s.add_development_dependency "rspec"
   s.add_development_dependency "rake"
 end

@@ -5,16 +5,17 @@ require "timeout"
 require "rbconfig"
 
 module Notifier
-  autoload :Growl,      "notifier/growl"
-  autoload :GNTP,       "notifier/gntp"
-  autoload :Snarl,      "notifier/snarl"
-  autoload :OsdCat,     "notifier/osd_cat"
-  autoload :Knotify,    "notifier/knotify"
-  autoload :Kdialog,    "notifier/kdialog"
-  autoload :NotifySend, "notifier/notify_send"
-  autoload :Placebo,    "notifier/placebo"
-  autoload :Version,    "notifier/version"
-  autoload :Adapters,   "notifier/adapters"
+  autoload :Growl,           "notifier/growl"
+  autoload :GNTP,            "notifier/gntp"
+  autoload :Snarl,           "notifier/snarl"
+  autoload :OsdCat,          "notifier/osd_cat"
+  autoload :Knotify,         "notifier/knotify"
+  autoload :Kdialog,         "notifier/kdialog"
+  autoload :OsxNotification, "notifier/osx_notification"
+  autoload :NotifySend,      "notifier/notify_send"
+  autoload :Placebo,         "notifier/placebo"
+  autoload :Version,         "notifier/version"
+  autoload :Adapters,        "notifier/adapters"
 
   extend self
 
