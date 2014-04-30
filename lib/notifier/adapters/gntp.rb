@@ -46,18 +46,18 @@ module Notifier
 
         icon = fetch_icon(options[:icon])
 
-        result = write  "GNTP/1.0 NOTIFY NONE",
-                        "Application-Name: #{application_name}",
-                        "Notification-Name: #{name}",
-                        "Notification-Title: #{options[:title]}",
-                        "Notification-Text: #{options[:message]}",
-                        "Notification-Icon: x-growl-resource://#{icon[:identifier]}",
-                        "Notification-Sticky: #{bool options[:sticky]}",
-                        nil,
-                        "Identifier: #{icon[:identifier]}",
-                        "Length: #{icon[:size]}",
-                        nil,
-                        icon[:contents]
+        write "GNTP/1.0 NOTIFY NONE",
+              "Application-Name: #{application_name}",
+              "Notification-Name: #{name}",
+              "Notification-Title: #{options[:title]}",
+              "Notification-Text: #{options[:message]}",
+              "Notification-Icon: x-growl-resource://#{icon[:identifier]}",
+              "Notification-Sticky: #{bool options[:sticky]}",
+              nil,
+              "Identifier: #{icon[:identifier]}",
+              "Length: #{icon[:size]}",
+              nil,
+              icon[:contents]
       end
 
       def fetch_icon(path)
@@ -75,14 +75,12 @@ module Notifier
       end
 
       def register(name)
-        result = write(
-          "GNTP/1.0 REGISTER NONE",
-          "Application-Name: #{application_name}",
-          "Notifications-count: 1",
-          nil,
-          "Notification-Name: #{name}",
-          "Notification-Enabled: True"
-        )
+        write "GNTP/1.0 REGISTER NONE",
+              "Application-Name: #{application_name}",
+              "Notifications-count: 1",
+              nil,
+              "Notification-Name: #{name}",
+              "Notification-Enabled: True"
       end
     end
   end
