@@ -7,11 +7,11 @@ module Notifier
     end
 
     def notify(options)
-      register
       command = [
         "terminal-notifier",
+        "-group", "notifier-rubygems",
         "-title", options[:title],
-        "-appIcon", options.fetch(:image, ''),
+        "-appIcon", options.fetch(:image, ""),
         "-message", options[:message]
       ]
 

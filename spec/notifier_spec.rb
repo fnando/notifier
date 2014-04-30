@@ -43,7 +43,7 @@ describe Notifier do
   end
 
   it "retrieves list of all notifiers" do
-    expect(Notifier.notifiers.size).to eql(8)
+    expect(Notifier.notifiers.size).to eql(9)
   end
 
   it "considers Placebo as fallback notifier" do
