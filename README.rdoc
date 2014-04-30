@@ -56,7 +56,7 @@ If your system support more than one notifier, you can specify which one you pre
 
   Notifier.default_notifier = :notify_send
 
-The available names are <tt>growl</tt>, <tt>kdialog</tt>, <tt>knotify</tt>, <tt>notify_send</tt>, <tt>osd_cat</tt>, and <tt>snarl</tt>.
+The available names are <tt>growl</tt>, <tt>terminal_notifier</tt>, <tt>kdialog</tt>, <tt>knotify</tt>, <tt>notify_send</tt>, <tt>osd_cat</tt>, and <tt>snarl</tt>.
 
 There are several helper methods that you can use in order to retrieve notifiers.
 
