@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    notifier (0.4.1)
+    notifier (0.5.0)
 
 GEM
   remote: http://rubygems.org/

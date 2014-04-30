@@ -3,6 +3,7 @@
 Send system notifications on several platforms with a simple and unified API. Currently supports:
 
 * Growl (Mac OS X)
+* terminal-notifier (Notification Center wrapper for Mac OS X)
 * GNTP Protocol (Growl, with Vagrant support)
 * Kdialog (Linux/KDE)
 * Knotify (Linux/KDE)
@@ -16,9 +17,15 @@ Send system notifications on several platforms with a simple and unified API. Cu
 
 === Mac OS X
 
+Growl:
+
 * Install Growl - http://growl.info/
 * Install the growlnotify script located on the "Extras" directory
 * Open the Growl Preference Panel (System > Growl) and activate "Listen for incoming notifications" and "Allow remote application registration" options on the Network tab.
+
+terminal-notifier:
+
+* Install terminal-notifier - https://github.com/alloy/terminal-notifier
 
 === Linux
 
