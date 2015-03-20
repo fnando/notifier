@@ -14,13 +14,13 @@ module Notifier
       command = [
         "growlnotify",
         "--name", "test_notifier",
-        "--image", options.fetch(:image, ''),
+        "--image", options.fetch(:image, '').to_s,
         "--priority", "2",
-        "--message", options[:message],
-        options[:title]
+        "--message", options[:message].to_s,
+        options[:title].to_s
       ]
 
-      Thread.new { system(*command) }
+      Thread.new { system(*command) }.join
     end
 
     def register

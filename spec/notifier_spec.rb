@@ -7,22 +7,22 @@ describe Notifier do
   end
 
   it "retrieves list of supported notifiers" do
-    Notifier::Snarl.stub :supported? => true
-    Notifier::Knotify.stub :supported? => true
+    allow(Notifier::Snarl).to receive_messages :supported? => true
+    allow(Notifier::Knotify).to receive_messages :supported? => true
 
     expect(Notifier.supported_notifiers.size).to eql(3)
   end
 
   it "returns first available notifier" do
-    Notifier::Snarl.stub :supported? => true
-    Notifier::Knotify.stub :supported? => true
+    allow(Notifier::Snarl).to receive_messages :supported? => true
+    allow(Notifier::Knotify).to receive_messages :supported? => true
 
     expect(Notifier.notifier).to eql(Notifier::Snarl)
   end
 
   it "prefers default notifier" do
-    Notifier::Snarl.stub :supported? => true
-    Notifier::Knotify.stub :supported? => true
+    allow(Notifier::Snarl).to receive_messages :supported? => true
+    allow(Notifier::Knotify).to receive_messages :supported? => true
 
     Notifier.default_notifier = :knotify
 
@@ -36,8 +36,8 @@ describe Notifier do
       :image => "image.png"
     }
 
-    Notifier::Snarl.stub :supported? => true
-    Notifier::Snarl.should_receive(:notify).with(params)
+    allow(Notifier::Snarl).to receive_messages :supported? => true
+    expect(Notifier::Snarl).to receive(:notify).with(params)
 
     Notifier.notify(params)
   end
@@ -57,7 +57,7 @@ describe Notifier do
   end
 
   it "returns notifier by its name when supported" do
-    Notifier::Snarl.stub :supported? => true
+    allow(Notifier::Snarl).to receive_messages :supported? => true
     expect(Notifier.supported_notifier_from_name(:snarl)).to eql(Notifier::Snarl)
   end
 

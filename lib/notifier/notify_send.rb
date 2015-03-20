@@ -9,12 +9,12 @@ module Notifier
     def notify(options)
       command = [
         "notify-send", "-i",
-        options[:image],
-        options[:title],
-        options[:message]
+        options[:image].to_s,
+        options[:title].to_s,
+        options[:message].to_s
       ]
 
-      Thread.new { system(*command) }
+      Thread.new { system(*command) }.join
     end
   end
 end

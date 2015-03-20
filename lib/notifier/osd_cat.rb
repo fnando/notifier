@@ -7,7 +7,7 @@ module Notifier
     end
 
     def notify(options)
-      color = options.fetch(:color, "white")
+      color = options.fetch(:color, "white").to_s
 
       command = [
         "osd_cat",
@@ -26,7 +26,7 @@ module Notifier
           stdin.puts options[:message]
           stdin.close
         end
-      end
+      end.join
     end
   end
 end

@@ -10,12 +10,12 @@ module Notifier
       command = [
         "terminal-notifier",
         "-group", "notifier-rubygems",
-        "-title", options[:title],
-        "-appIcon", options.fetch(:image, ""),
-        "-message", options[:message]
+        "-title", options[:title].to_s,
+        "-appIcon", options.fetch(:image, "").to_s,
+        "-message", options[:message].to_s
       ]
 
-      Thread.new { system(*command) }
+      Thread.new { system(*command) }.join
     end
   end
 end
