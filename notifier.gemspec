@@ -1,6 +1,4 @@
-# -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require "notifier/version"
+require "./lib/notifier/version"
 
 Gem::Specification.new do |s|
   s.name        = "notifier"
@@ -19,6 +17,8 @@ Gem::Specification.new do |s|
 
   s.requirements << "Growl, terminal-notifier, Libnotify, OSD, KDE (Knotify and Kdialog) or Snarl"
 
-  s.add_development_dependency "rspec"
+  s.add_development_dependency "minitest-utils"
   s.add_development_dependency "rake"
+  s.add_development_dependency "mocha"
+  s.add_development_dependency "codeclimate-test-reporter"
 end

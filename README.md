@@ -1,4 +1,10 @@
-= Notifier
+# Notifier
+
+[![Travis-CI](https://travis-ci.org/fnando/notifier.png)](https://travis-ci.org/fnando/notifier)
+[![Code Climate](https://codeclimate.com/github/fnando/notifier/badges/gpa.svg)](https://codeclimate.com/github/fnando/notifier)
+[![Test Coverage](https://codeclimate.com/github/fnando/notifier/badges/coverage.svg)](https://codeclimate.com/github/fnando/notifier/coverage)
+[![Gem](https://img.shields.io/gem/v/notifier.svg)](https://rubygems.org/gems/notifier)
+[![Gem](https://img.shields.io/gem/dt/notifier.svg)](https://rubygems.org/gems/notifier)
 
 Send system notifications on several platforms with a simple and unified API. Currently supports:
 
@@ -11,11 +17,11 @@ Send system notifications on several platforms with a simple and unified API. Cu
 * Libnotify (Linux)
 * Snarl (Windows)
 
-== Installation
+## Installation
 
-  gem install notifier
+    gem install notifier
 
-=== Mac OS X
+### Mac OS X
 
 Growl:
 
@@ -27,69 +33,74 @@ terminal-notifier:
 
 * Install terminal-notifier - https://github.com/alloy/terminal-notifier
 
-=== Linux
+### Linux
 
 If you're a linux guy, you can choose one of these methods:
 
-* Install libnotify-bin and its dependencies: <tt>sudo aptitude install libnotify-bin</tt>
-* Install xosd-bin: <tt>sudo aptitude install xosd-bin</tt>
+* Install libnotify-bin and its dependencies: `sudo aptitude install libnotify-bin`
+* Install xosd-bin: `sudo aptitude install xosd-bin`
 * KDE users don't need to install anything: Test Notifier will use +knotify+ or +kdialog+.
 
-=== Windows
+### Windows
 
 * Install Snarl: download from http://www.fullphat.net
-* Install ruby-snarl: <tt>gem install ruby-snarl</tt>
+* Install ruby-snarl: `gem install ruby-snarl`
 
-== Usage
+## Usage
 
 Notifier will try to detect which notifiers are available in your system. So you can just send a message:
 
-  Notifier.notify(
-    :image   => "image.png",
-    :title   => "Testing Notifier",
-    :message => "Sending an important message!"
-  )
+```ruby
+Notifier.notify(
+  :image   => "image.png",
+  :title   => "Testing Notifier",
+  :message => "Sending an important message!"
+)
+```
 
 Not all notifiers support the image option, therefore it will be ignored.
 
 If your system support more than one notifier, you can specify which one you prefer:
 
-  Notifier.default_notifier = :notify_send
+```ruby
+Notifier.default_notifier = :notify_send
+```
 
-The available names are <tt>growl</tt>, <tt>terminal_notifier</tt>, <tt>kdialog</tt>, <tt>knotify</tt>, <tt>notify_send</tt>, <tt>osd_cat</tt>, and <tt>snarl</tt>.
+The available names are `growl`, `terminal_notifier`, `kdialog`, `knotify`, `notify_send`, `osd_cat`, and `snarl`.
 
 There are several helper methods that you can use in order to retrieve notifiers.
 
-* <tt>Notifier.notifier</tt>: return the first supported notifier
-* <tt>Notifier.notifiers</tt>: return all notifiers
-* <tt>Notifier.supported_notifiers</tt>: return only supported notifiers
-* <tt>Notifier.from_name(name)</tt>: find notifier by its name
-* <tt>Notifier.supported_notifier_from_name(name)</tt>: find a supported notifier by its name
+* `Notifier.notifier`: return the first supported notifier
+* `Notifier.notifiers`: return all notifiers
+* `Notifier.supported_notifiers`: return only supported notifiers
+* `Notifier.from_name(name)`: find notifier by its name
+* `Notifier.supported_notifier_from_name(name)`: find a supported notifier by its name
 
-== Creating custom notifiers
+## Creating custom notifiers
 
-To create a new notifier, just create a module on <tt>Notifier</tt> namespace that implements the following interface:
+To create a new notifier, just create a module on `Notifier` namespace that implements the following interface:
 
-  module Notifier
-    module MyCustomNotifier
-      def self.supported?
-      end
+```ruby
+module Notifier
+  module MyCustomNotifier
+    def self.supported?
+    end
 
-      def self.notify(options)
-      end
+    def self.notify(options)
     end
   end
+end
+```
 
-== Maintainer
+## Maintainer
 
-* Nando Vieira - http://nandovieira.com.br
+* Nando Vieira - http://nandovieira.com
 
-== Contributors
+## Contributors
 
-* Olek Janiszewski
-* David Miani
+https://github.com/fnando/notifier/graphs/contributors
 
-== License
+## License
 
 (The MIT License)
 
