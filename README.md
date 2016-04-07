@@ -23,15 +23,22 @@ Send system notifications on several platforms with a simple and unified API. Cu
 
 ### Mac OS X
 
-Growl:
+#### Growl
 
 * Install Growl - http://growl.info/
 * Install the growlnotify script located on the "Extras" directory
 * Open the Growl Preference Panel (System > Growl) and activate "Listen for incoming notifications" and "Allow remote application registration" options on the Network tab.
 
-terminal-notifier:
+#### terminal-notifier
 
 * Install terminal-notifier - https://github.com/alloy/terminal-notifier
+
+terminal-notifier also supports two additional flags:
+
+* `subtitle`
+* `sound`
+
+See terminal-notifier's help for additional information.
 
 ### Linux
 
