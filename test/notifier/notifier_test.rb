@@ -34,9 +34,9 @@ class NotifierTest < Minitest::Test
 
   test "sends notification" do
     params = {
-      :title => "Some title",
-      :message => "Some message",
-      :image => "image.png"
+      title: "Some title",
+      message: "Some message",
+      image: "image.png"
     }
 
     Notifier::Snarl.stubs(:supported?).returns(true)

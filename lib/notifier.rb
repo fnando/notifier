@@ -32,13 +32,13 @@ module Notifier
   end
 
   def notifiers
-    constants.collect do |name|
+    constants.map do |name|
       const_get(name) unless %w[Placebo Adapters Version].include?(name.to_s)
     end.compact + [Placebo]
   end
 
   def supported_notifiers
-    notifiers.select {|notifier| notifier.supported?}
+    notifiers.select {|notifier| notifier.supported? }
   end
 
   def from_name(name)
@@ -59,6 +59,7 @@ module Notifier
   private
 
   def classify(string)
-    string.gsub(/_(.)/sm) { "#{$1.upcase}" }.gsub(/^(.)/) { "#{$1.upcase}" }
+    string.gsub(/_(.)/sm) { "#{$1.upcase}" }
+          .gsub(/^(.)/) { "#{$1.upcase}" }
   end
 end

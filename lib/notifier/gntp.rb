@@ -21,16 +21,16 @@ module Notifier
 
     def notify(options)
       gntp = Adapters::GNTP.new({
-        :name => "test_notifier",
-        :host => host,
-        :port => port
+        name: "test_notifier",
+        host: host,
+        port: port
       })
 
       gntp.notify({
-        :name    => "status",
-        :title   => options[:title],
-        :message => options[:message],
-        :icon    => options[:image]
+        name: "status",
+        title: options[:title],
+        message: options[:message],
+        icon: options[:image]
       })
     end
   end

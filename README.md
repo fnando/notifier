@@ -52,9 +52,9 @@ Notifier will try to detect which notifiers are available in your system. So you
 
 ```ruby
 Notifier.notify(
-  :image   => "image.png",
-  :title   => "Testing Notifier",
-  :message => "Sending an important message!"
+  image: "image.png",
+  title: "Testing Notifier",
+  message: "Sending an important message!"
 )
 ```
 

@@ -8,7 +8,7 @@ module Notifier
 
       def initialize(options = {})
         if options.kind_of?(String)
-          options = {:name => options}
+          options = {name: options}
         end
 
         @application_name = options.fetch(:name, "GNTP/Ruby")
@@ -64,9 +64,9 @@ module Notifier
         contents = File.open(path, "rb") {|f| f.read }
 
         {
-          :identifier => Digest::MD5.hexdigest(contents),
-          :contents => contents,
-          :size => contents.bytesize
+          identifier: Digest::MD5.hexdigest(contents),
+          contents: contents,
+          size: contents.bytesize
         }
       end
 
