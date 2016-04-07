@@ -57,6 +57,7 @@ module Notifier
   end
 
   private
+
   def classify(string)
     string.gsub(/_(.)/sm) { "#{$1.upcase}" }.gsub(/^(.)/) { "#{$1.upcase}" }
   end

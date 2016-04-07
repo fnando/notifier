@@ -2,7 +2,10 @@ require "test_helper"
 
 class NotifierTest < Minitest::Test
   setup do
-    unsupport_all_notifiers
+    Notifier.notifiers.each do |notifier|
+      notifier.stubs(:supported?).returns(false) unless notifier == Notifier::Placebo
+    end
+
     Notifier.default_notifier = nil
   end
 
