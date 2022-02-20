@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 module Notifier
   module NotifySend
     extend self
 
     def supported?
-      Notifier.os?(/(linux|freebsd)/) && `which notify-send > /dev/null` && $? == 0
+      Notifier.os?(/(linux|freebsd)/) &&
+        `which notify-send > /dev/null` &&
+        $CHILD_STATUS == 0
     end
 
     def notify(options)

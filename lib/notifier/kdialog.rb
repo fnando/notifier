@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 module Notifier
   module Kdialog
     extend self
 
     def supported?
-      Notifier.os?(/(linux|freebsd)/) && `which kdialog > /dev/null` && $? == 0
+      Notifier.os?(/(linux|freebsd)/) &&
+        `which kdialog > /dev/null` &&
+        $CHILD_STATUS == 0
     end
 
     def notify(options)

@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 require "open3"
 require "socket"
 require "digest/md5"
 require "timeout"
 require "rbconfig"
+require "English"
 
 module Notifier
-  require "notifier/growl"
-  require "notifier/gntp"
   require "notifier/snarl"
   require "notifier/osd_cat"
   require "notifier/knotify"
@@ -15,12 +16,15 @@ module Notifier
   require "notifier/placebo"
   require "notifier/terminal_notifier"
   require "notifier/version"
-  require "notifier/adapters"
 
   extend self
 
   class << self
     attr_accessor :default_notifier
+  end
+
+  def skip_constants
+    @skip_constants ||= %w[Placebo Adapters Version]
   end
 
   def notifier
@@ -32,34 +36,32 @@ module Notifier
   end
 
   def notifiers
-    constants.map do |name|
-      const_get(name) unless %w[Placebo Adapters Version].include?(name.to_s)
-    end.compact + [Placebo]
+    constants.filter_map do |name|
+      const_get(name) unless skip_constants.include?(name.to_s)
+    end + [Placebo]
   end
 
   def supported_notifiers
-    notifiers.select {|notifier| notifier.supported? }
+    notifiers.select(&:supported?)
   end
 
   def from_name(name)
     const_get(classify(name.to_s))
-  rescue Exception
+  rescue StandardError
     nil
   end
 
   def supported_notifier_from_name(name)
     notifier = from_name(name)
-    notifier && notifier.supported? ? notifier : nil
+    notifier&.supported? ? notifier : nil
   end
 
   def os?(regex)
     RUBY_PLATFORM =~ regex || RbConfig::CONFIG["host_os"] =~ regex
   end
 
-  private
-
-  def classify(string)
-    string.gsub(/_(.)/sm) { "#{$1.upcase}" }
-          .gsub(/^(.)/) { "#{$1.upcase}" }
+  private def classify(string)
+    string.gsub(/_(.)/sm) { Regexp.last_match(1).upcase.to_s }
+          .gsub(/^(.)/) { Regexp.last_match(1).upcase.to_s }
   end
 end

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Notifier
   module TerminalNotifier
     extend self
 
     def supported?
-      Notifier.os?(/darwin/) && `which terminal-notifier` && $? == 0
+      Notifier.os?(/darwin/) && `which terminal-notifier` && $CHILD_STATUS == 0
     end
 
     def notify(options)
@@ -18,9 +20,18 @@ module Notifier
 
       # -sound with an empty string (e.g., "") will trigger the
       # default sound so we need to check for it.
-      command.concat(["-sound", options.fetch(:sound, "default").to_s] ) if options[:sound]
+      if options[:sound]
+        command.concat([
+          "-sound",
+          options.fetch(:sound, "default").to_s
+        ])
+      end
 
-      Thread.new { system(*command) }.join
+      Thread.new do
+        Open3.popen3(*command) do |_stdin, _stdout, _stderr|
+          # noop
+        end
+      end.join
     end
   end
 end

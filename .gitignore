@@ -3,3 +3,4 @@ pkg/*
 .bundle
 .DS_Store
 *.lock
+/coverage

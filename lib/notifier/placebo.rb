@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifier
   module Placebo
     extend self

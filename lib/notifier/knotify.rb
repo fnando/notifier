@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 module Notifier
   module Knotify
     extend self
 
     def supported?
-      Notifier.os?(/(linux|freebsd)/) && `ps -Al | grep dcop` && $? == 0
+      Notifier.os?(/(linux|freebsd)/) &&
+        `ps -Al | grep dcop` &&
+        $CHILD_STATUS == 0
     end
 
     def notify(options)

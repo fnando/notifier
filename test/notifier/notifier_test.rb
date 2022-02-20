@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class NotifierTest < Minitest::Test
   setup do
     Notifier.notifiers.each do |notifier|
-      notifier.stubs(:supported?).returns(false) unless notifier == Notifier::Placebo
+      unless notifier == Notifier::Placebo
+        notifier.stubs(:supported?).returns(false)
+      end
     end
 
     Notifier.default_notifier = nil
@@ -46,7 +50,7 @@ class NotifierTest < Minitest::Test
   end
 
   test "retrieves list of all notifiers" do
-    assert_equal 9, Notifier.notifiers.size
+    assert_equal 7, Notifier.notifiers.size
   end
 
   test "considers Placebo as fallback notifier" do
@@ -56,7 +60,6 @@ class NotifierTest < Minitest::Test
   test "returns notifier by its name" do
     assert_equal Notifier::OsdCat, Notifier.from_name(:osd_cat)
     assert_equal Notifier::NotifySend, Notifier.from_name(:notify_send)
-    assert_equal Notifier::Growl, Notifier.from_name(:growl)
   end
 
   test "returns notifier by its name when supported" do
