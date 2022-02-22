@@ -7,7 +7,6 @@ Send system notifications on several platforms with a simple and unified API.
 Currently supports:
 
 - terminal-notifier (Notification Center wrapper for Mac OS X)
-- GNTP Protocol (Growl, with Vagrant support)
 - Kdialog (Linux/KDE)
 - Knotify (Linux/KDE)
 - OSD Cat (Linux)
