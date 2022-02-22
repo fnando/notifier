@@ -6,9 +6,11 @@ require "digest/md5"
 require "timeout"
 require "rbconfig"
 require "English"
+require "net/http"
 
 module Notifier
   require "notifier/snarl"
+  require "notifier/hud"
   require "notifier/osd_cat"
   require "notifier/knotify"
   require "notifier/kdialog"

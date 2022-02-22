@@ -8,6 +8,8 @@ require "notifier"
 require "minitest/utils"
 require "minitest/autorun"
 
+Notifier.default_notifier = :hud
+
 module Snarl
   def self.show_message(*)
   end

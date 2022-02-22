@@ -13,6 +13,10 @@ class NotifierTest < Minitest::Test
     Notifier.default_notifier = nil
   end
 
+  teardown do
+    Notifier.default_notifier = :hud
+  end
+
   test "retrieves list of supported notifiers" do
     Notifier::Snarl.stubs(:supported?).returns(true)
     Notifier::Knotify.stubs(:supported?).returns(true)
@@ -50,7 +54,7 @@ class NotifierTest < Minitest::Test
   end
 
   test "retrieves list of all notifiers" do
-    assert_equal 7, Notifier.notifiers.size
+    assert_equal 8, Notifier.notifiers.size
   end
 
   test "considers Placebo as fallback notifier" do
@@ -60,6 +64,7 @@ class NotifierTest < Minitest::Test
   test "returns notifier by its name" do
     assert_equal Notifier::OsdCat, Notifier.from_name(:osd_cat)
     assert_equal Notifier::NotifySend, Notifier.from_name(:notify_send)
+    assert_equal Notifier::Hud, Notifier.from_name(:hud)
   end
 
   test "returns notifier by its name when supported" do

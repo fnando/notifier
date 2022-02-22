@@ -12,9 +12,17 @@ module Notifier
 
     def notify(options)
       command = [
-        "dcop", "knotify", "default", "notify", "eventname",
-        options[:title].to_s, options[:message].to_s,
-        "", "", "16", "2"
+        "dcop",
+        "knotify",
+        "default",
+        "notify",
+        "eventname",
+        options[:title].to_s,
+        options[:message].to_s,
+        "",
+        "",
+        "16",
+        "2"
       ]
 
       Thread.new { system(*command) }.join
