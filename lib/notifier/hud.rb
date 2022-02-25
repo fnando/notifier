@@ -5,37 +5,28 @@ module Notifier
     extend self
 
     def supported?
-      Notifier.os?(/darwin/) && hud?
+      Notifier.os?(/darwin/) && hud_bin
     end
 
-    def uri
-      URI("http://127.0.0.1:32323/hud")
-    end
-
-    def hud?
-      return @hud unless @hud.nil?
-
-      @hud = begin
-        response = Net::HTTP.get_response(uri)
-        response.code == "200"
-      rescue StandardError
-        false
-      end
-
-      @hud
+    def hud_bin
+      @hud_bin ||= [
+        "/Applications/hud.app/Contents/MacOS/cli",
+        "~/Applications/hud.app/Contents/MacOS/cli"
+      ].first {|path| File.expand_path(path) }
     end
 
     def notify(options)
-      Thread.new do
-        Net::HTTP.post_form(
-          uri,
-          {
-            "title" => options[:title].to_s,
-            "message" => options[:message].to_s,
-            "symbolName" => options[:image].to_s
-          }
-        )
-      end.join
+      command = [
+        hud_bin,
+        "--title",
+        options[:title].to_s,
+        "--message",
+        options[:message].to_s,
+        "--symbol-name",
+        options[:image].to_s
+      ]
+
+      Thread.new { system(*command) }.join
     end
   end
 end
