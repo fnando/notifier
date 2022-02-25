@@ -30,7 +30,8 @@ module Notifier
   end
 
   def notifier
-    supported_notifier_from_name(default_notifier) || supported_notifiers.first
+    supported_notifier_from_name(ENV.fetch("NOTIFIER", default_notifier)) ||
+      supported_notifiers.first
   end
 
   def notify(options)

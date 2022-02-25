@@ -67,6 +67,14 @@ prefer:
 Notifier.default_notifier = :notify_send
 ```
 
+Alternatively, you can set the default notifier by using the `NOTIFIER` env var.
+The following example assumes `test_notifier` is configured on this Rails
+project. The env var has precedence of `Notifier.default_notifier`.
+
+```console
+$ NOTIFIER=hud rails test
+```
+
 The available names are `terminal_notifier`, `kdialog`, `knotify`,
 `notify_send`, `osd_cat`, and `snarl`.
 

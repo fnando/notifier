@@ -11,6 +11,7 @@ class NotifierTest < Minitest::Test
     end
 
     Notifier.default_notifier = nil
+    ENV.delete("NOTIFIER")
   end
 
   teardown do
@@ -36,6 +37,17 @@ class NotifierTest < Minitest::Test
     Notifier::Knotify.stubs(:supported?).returns(true)
 
     Notifier.default_notifier = :knotify
+
+    assert_equal Notifier::Knotify, Notifier.notifier
+  end
+
+  test "prefers default notifier using env var" do
+    ENV["NOTIFIER"] = "knotify"
+
+    Notifier::Snarl.stubs(:supported?).returns(true)
+    Notifier::Knotify.stubs(:supported?).returns(true)
+
+    Notifier.default_notifier = :snarl
 
     assert_equal Notifier::Knotify, Notifier.notifier
   end
