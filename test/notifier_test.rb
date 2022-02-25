@@ -28,8 +28,9 @@ class NotifierTest < Minitest::Test
   test "returns first available notifier" do
     Notifier::Snarl.stubs(:supported?).returns(true)
     Notifier::Knotify.stubs(:supported?).returns(true)
+    Notifier::Hud.stubs(:supported?).returns(true)
 
-    assert_equal Notifier::Snarl, Notifier.notifier
+    assert_equal Notifier::Hud, Notifier.notifier
   end
 
   test "prefers default notifier" do

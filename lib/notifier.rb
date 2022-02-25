@@ -39,9 +39,11 @@ module Notifier
   end
 
   def notifiers
-    constants.filter_map do |name|
+    notifiers = constants.filter_map do |name|
       const_get(name) unless skip_constants.include?(name.to_s)
-    end + [Placebo]
+    end
+
+    notifiers.sort_by(&:name) + [Placebo]
   end
 
   def supported_notifiers
