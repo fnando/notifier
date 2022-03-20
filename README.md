@@ -30,6 +30,10 @@ terminal-notifier also supports two additional flags:
 
 See terminal-notifier's help for additional information.
 
+#### hud
+
+- Install HUD - https://fnando.gumroad.com/l/hud-macos
+
 ### Linux
 
 If you're a linux guy, you can choose one of these methods:
