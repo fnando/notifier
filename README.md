@@ -7,6 +7,7 @@ Send system notifications on several platforms with a simple and unified API.
 Currently supports:
 
 - terminal-notifier (Notification Center wrapper for Mac OS X)
+- [HUD](https://fnando.gumroad.com/l/hud-macos)
 - Kdialog (Linux/KDE)
 - Knotify (Linux/KDE)
 - OSD Cat (Linux)
