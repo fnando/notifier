@@ -37,7 +37,7 @@ See terminal-notifier's help for additional information.
 
 ### Linux
 
-If you're a linux guy, you can choose one of these methods:
+If you're a linux user, you can choose one of these methods:
 
 - Install libnotify-bin and its dependencies:
   `sudo aptitude install libnotify-bin`
