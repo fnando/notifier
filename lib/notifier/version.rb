@@ -3,8 +3,8 @@
 module Notifier
   module Version
     MAJOR = 1
-    MINOR = 2
-    PATCH = 2
-    STRING = "#{MAJOR}.#{MINOR}.#{PATCH}"
+    MINOR = 3
+    PATCH = 0
+    STRING = "#{MAJOR}.#{MINOR}.#{PATCH}".freeze
   end
 end

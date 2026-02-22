@@ -11,9 +11,9 @@ Gem::Specification.new do |s|
   s.homepage    = "http://rubygems.org/gems/notifier"
   s.summary     = "Send system notifications on several platforms with a " \
                   "simple and unified API. Currently supports Libnotify, " \
-                  "OSD, KDE (Knotify and Kdialog) and Snarl"
+                  "OSD, HUD, KDE (Knotify and Kdialog) and Snarl"
   s.description = s.summary
-  s.required_ruby_version = ">= 2.7"
+  s.required_ruby_version = ">= 3.4"
   s.metadata["rubygems_mfa_required"] = "true"
 
   s.files         = `git ls-files`.split("\n")
@@ -22,8 +22,8 @@ Gem::Specification.new do |s|
   end
   s.require_paths = ["lib"]
 
-  s.requirements << "terminal-notifier, Libnotify, OSD, KDE (Knotify and " \
-                    "Kdialog) or Snarl"
+  s.requirements << "terminal-notifier, HUD, Libnotify, OSD, " \
+                    "KDE (Knotify and Kdialog) or Snarl"
 
   s.add_development_dependency "minitest-utils"
   s.add_development_dependency "mocha"
