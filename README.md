@@ -42,12 +42,12 @@ If you're a linux user, you can choose one of these methods:
 - Install libnotify-bin and its dependencies:
   `sudo aptitude install libnotify-bin`
 - Install xosd-bin: `sudo aptitude install xosd-bin`
-- KDE users don't need to install anything: Test Notifier will use +knotify+ or
-  +kdialog+.
+- KDE users don't need to install anything: Test Notifier will use `knotify` or
+  `kdialog`.
 
 ### Windows
 
-- Install Snarl: download from http://www.fullphat.net
+- Install Snarl: download from https://github.com/fullphat/snarl
 - Install ruby-snarl: `gem install ruby-snarl`
 
 ## Usage
