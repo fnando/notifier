@@ -15,7 +15,7 @@ module Notifier
   require "notifier/knotify"
   require "notifier/kdialog"
   require "notifier/notify_send"
-  require "notifier/placebo"
+  require "notifier/noop"
   require "notifier/terminal_notifier"
   require "notifier/version"
 
@@ -26,7 +26,7 @@ module Notifier
   end
 
   def skip_constants
-    @skip_constants ||= %w[Placebo Adapters Version]
+    @skip_constants ||= %w[Noop Adapters Version]
   end
 
   def notifier
@@ -43,7 +43,7 @@ module Notifier
       const_get(name) unless skip_constants.include?(name.to_s)
     end
 
-    notifiers.sort_by(&:name) + [Placebo]
+    notifiers.sort_by(&:name) + [Noop]
   end
 
   def supported_notifiers

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Notifier
-  module Placebo
+  module Noop
     extend self
 
     def supported?

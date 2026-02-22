@@ -5,17 +5,13 @@ require "test_helper"
 class NotifierTest < Minitest::Test
   setup do
     Notifier.notifiers.each do |notifier|
-      unless notifier == Notifier::Placebo
+      unless notifier == Notifier::Noop
         notifier.stubs(:supported?).returns(false)
       end
     end
 
     Notifier.default_notifier = nil
     ENV.delete("NOTIFIER")
-  end
-
-  teardown do
-    Notifier.default_notifier = :hud
   end
 
   test "retrieves list of supported notifiers" do
@@ -70,8 +66,8 @@ class NotifierTest < Minitest::Test
     assert_equal 8, Notifier.notifiers.size
   end
 
-  test "considers Placebo as fallback notifier" do
-    assert_equal Notifier::Placebo, Notifier.supported_notifiers.last
+  test "considers Noop as fallback notifier" do
+    assert_equal Notifier::Noop, Notifier.supported_notifiers.last
   end
 
   test "returns notifier by its name" do
@@ -82,6 +78,7 @@ class NotifierTest < Minitest::Test
 
   test "returns notifier by its name when supported" do
     Notifier::Snarl.expects(:supported?).returns(true)
+
     assert_equal Notifier::Snarl, Notifier.supported_notifier_from_name(:snarl)
   end
 
