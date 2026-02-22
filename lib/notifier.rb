@@ -25,13 +25,16 @@ module Notifier
     attr_accessor :default_notifier
   end
 
+  def setup
+    self.default_notifier = ENV.fetch("NOTIFIER", nil)
+  end
+
   def skip_constants
     @skip_constants ||= %w[Noop Adapters Version]
   end
 
   def notifier
-    supported_notifier_from_name(ENV.fetch("NOTIFIER", default_notifier)) ||
-      supported_notifiers.first
+    supported_notifier_from_name(default_notifier) || supported_notifiers.first
   end
 
   def notify(options)
@@ -69,4 +72,7 @@ module Notifier
     string.gsub(/_(.)/sm) { Regexp.last_match(1).upcase.to_s }
           .gsub(/^(.)/) { Regexp.last_match(1).upcase.to_s }
   end
+
+  # Run setup, which sets default notifier from env var.
+  setup
 end
